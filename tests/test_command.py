@@ -11,10 +11,10 @@ def command(draw):
 
 
 @st.composite
-def command_list(draw):
-    return draw(st.lists(command()))
+def command_set(draw):
+    return draw(st.sets(command()))
 
 
-@given(command_list())
+@given(command_set())
 def test_encode_decode(commands):
     assert decode_commands_from_json(encode_commands_to_json(commands)) == commands

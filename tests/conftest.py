@@ -20,12 +20,13 @@ def command3():
 
 
 @pytest.fixture
-def command_list(command1, command2):
-    return [command1, command2]
+def command_set(command1, command2):
+    return {command1, command2}
 
 
 @pytest.fixture
-def command_file(tmp_path):
+def command_file(command_set, tmp_path):
     command_file = tmp_path / "commands.json"
     command_file.touch()
+    save_to_command_file(command_set, command_file)
     return command_file
