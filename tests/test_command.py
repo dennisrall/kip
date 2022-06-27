@@ -1,18 +1,18 @@
 from hypothesis import given
-from hypothesis.strategies import text, composite, lists
+import hypothesis.strategies as st
 
 from src.command import decode_commands_from_json, Command, encode_commands_to_json
 
 
-@composite
+@st.composite
 def command(draw):
-    command_str, description, alias = draw(text()), draw(text()), draw(text())
+    command_str, description, alias = draw(st.text()), draw(st.text()), draw(st.text())
     return Command(command_str, description, alias)
 
 
-@composite
+@st.composite
 def command_list(draw):
-    return draw(lists(command()))
+    return draw(st.lists(command()))
 
 
 @given(command_list())
