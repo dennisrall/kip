@@ -1,12 +1,21 @@
+from hypothesis import given
+
 from src.services.command_file import load_from_command_file
 from src.services.remove_command import remove_command
+from tests.strategies import non_empty_command_set
 
 
-def test_remove_existing_command(command1, command2, command_file):
-    remove_command(command1, command_file)
-    assert load_from_command_file(command_file) == {command2}
+@given(commands=non_empty_command_set)
+def test_remove_existing_command(command_file_factory, commands):
+    command_file = command_file_factory(commands)
+    command_to_remove = commands.pop()
+    remove_command(command_to_remove, command_file)
+    assert load_from_command_file(command_file) == commands - {command_to_remove}
 
 
-def test_remove_non_existing_command(command_set, command3, command_file):
-    remove_command(command3, command_file)
-    assert load_from_command_file(command_file) == command_set
+@given(commands=non_empty_command_set)
+def test_remove_non_existing_command(command_file_factory, commands):
+    command_to_remove = commands.pop()
+    command_file = command_file_factory(commands)
+    remove_command(command_to_remove, command_file)
+    assert load_from_command_file(command_file) == commands
