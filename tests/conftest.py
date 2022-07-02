@@ -1,5 +1,6 @@
 import pytest
 
+from src.command import Command
 from src.services.command_file import save_to_command_file
 
 
@@ -12,3 +13,6 @@ def command_file_factory(tmp_path_factory):
         return command_file
 
     return create_command_file
+
+
+
