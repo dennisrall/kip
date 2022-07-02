@@ -15,4 +15,6 @@ def command_file_factory(tmp_path_factory):
     return create_command_file
 
 
-
+@pytest.fixture(scope="session")
+def ls_command():
+    return Command("ls -l", "list files in current director", "ls-l")

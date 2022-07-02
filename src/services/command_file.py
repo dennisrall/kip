@@ -1,5 +1,4 @@
 import contextlib
-from collections.abc import Iterator
 
 import more_itertools
 
@@ -9,7 +8,10 @@ from src.util.types import file_name
 
 def load_from_command_file(command_file_name: file_name) -> set[Command]:
     with open(command_file_name) as command_file:
-        command_str = more_itertools.first(command_file.readlines())
+        lines = command_file.readlines()
+        if not lines:
+            return set()
+        command_str = more_itertools.first(lines)
     return decode_commands_from_json(command_str)
 
 

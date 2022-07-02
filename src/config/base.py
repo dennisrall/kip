@@ -1,0 +1,1 @@
+KIP_FILE = '/home/dennis/.kip'

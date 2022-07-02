@@ -10,6 +10,12 @@ def test_load_from_command_file(command_file_factory, commands):
     assert load_from_command_file(command_file) == commands
 
 
+def test_load_empty_command_file(tmp_path):
+    command_file = tmp_path / "commands.json"
+    command_file.touch()
+    assert load_from_command_file(command_file) == set()
+
+
 @given(commands=non_empty_command_set)
 def test_remove_from_persistent_command_set(command_file_factory, commands):
     command_file = command_file_factory(commands)

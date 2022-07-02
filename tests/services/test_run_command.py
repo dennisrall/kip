@@ -1,14 +1,6 @@
 import os
 
-import pytest
-
-from src.command import Command
 from src.services.run_command import run_command
-
-
-@pytest.fixture
-def ls_command():
-    return Command("ls -l", "list files in current director", "ls-l")
 
 
 def test_run_command_mock(ls_command, mocker):
