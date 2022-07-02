@@ -1,8 +1,8 @@
 from thefuzz import process
 
-from src.command import Command
-from src.services.command_file import load_from_command_file
-from src.util.types import file_name
+from kip.command import Command
+from kip.services.command_file import load_from_command_file
+from kip.util.types import file_name
 
 
 def search_command(search_str: str, command_file_name: file_name) -> list[Command]:

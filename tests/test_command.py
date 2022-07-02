@@ -1,6 +1,6 @@
 from hypothesis import given
 
-from src.command import decode_commands_from_json, encode_commands_to_json
+from kip.command import decode_commands_from_json, encode_commands_to_json
 from tests.strategies import command_set
 
 

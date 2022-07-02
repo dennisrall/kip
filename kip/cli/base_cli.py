@@ -5,11 +5,11 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from src.command import Command
-from src.services.add_command import add_command
-from src.services.search_command import search_command
-from src.services.command_file import load_from_command_file
-from src.config.read_config import get_kip_file
+from kip.command import Command
+from kip.services.add_command import add_command
+from kip.services.search_command import search_command
+from kip.services.command_file import load_from_command_file
+from kip.config.read_config import get_kip_file
 
 
 class KipCli:

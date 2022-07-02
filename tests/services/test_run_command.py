@@ -1,6 +1,6 @@
 import os
 
-from src.services.run_command import run_command
+from kip.services.run_command import run_command
 
 
 def test_run_command_mock(ls_command, mocker):

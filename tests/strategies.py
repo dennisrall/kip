@@ -1,6 +1,6 @@
 import hypothesis.strategies as st
 
-from src.command import Command
+from kip.command import Command
 
 
 command = st.builds(Command, st.text(), st.text(), st.text())

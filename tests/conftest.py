@@ -1,7 +1,7 @@
 import pytest
 
-from src.command import Command
-from src.services.command_file import save_to_command_file
+from kip.command import Command
+from kip.services.command_file import save_to_command_file
 
 
 @pytest.fixture(scope="session")

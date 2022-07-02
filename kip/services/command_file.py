@@ -2,8 +2,8 @@ import contextlib
 
 import more_itertools
 
-from src.command import Command, decode_commands_from_json, encode_commands_to_json
-from src.util.types import file_name
+from kip.command import Command, decode_commands_from_json, encode_commands_to_json
+from kip.util.types import file_name
 
 
 def load_from_command_file(command_file_name: file_name) -> set[Command]:

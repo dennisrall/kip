@@ -1,6 +1,6 @@
 from hypothesis import given
 
-from src.services.search_command import search_command
+from kip.services.search_command import search_command
 from tests.strategies import non_empty_command_set, command_set
 
 
