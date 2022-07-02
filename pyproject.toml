@@ -8,6 +8,7 @@ authors = ["Dennis Rall <dennis.rall@web.de>"]
 python = "^3.10"
 dataclasses-json = "^0.5.7"
 more-itertools = "^8.13.0"
+thefuzz = "^0.19.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
