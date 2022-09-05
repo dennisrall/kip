@@ -1,6 +1,6 @@
 from hypothesis import given
 
-from kip.services.command_file import load_from_command_file
+from kip.storage.command_file import load_from_command_file
 from kip.services.remove_command import remove_command
 from tests.strategies import non_empty_command_set
 

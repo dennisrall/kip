@@ -1,6 +1,6 @@
 import os
 
-from kip.command import Command
+from kip.models.command import Command
 
 
 def run_command(command: Command) -> None:

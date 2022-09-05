@@ -1,12 +1,9 @@
-from thefuzz import process
-
-from kip.command import Command
-from kip.services.command_file import load_from_command_file
-from kip.util.types import file_name
+from kip.models.command import Command
+from kip.services.config import get_kip_file
+from kip.services.list_commands import list_commands
 
 
-def search_command(search_str: str, command_file_name: file_name) -> list[Command]:
-    commands = load_from_command_file(command_file_name)
-    command_reprs = [repr(command) for command in commands]
-    matching_commands = process.extractBests(search_str, command_reprs, score_cutoff=50)
-    return [eval(command_repr) for command_repr, _ in matching_commands]
+def search_command(kip_file=get_kip_file()) -> Command:
+    print("mocking of searching a command with string")
+    first, *_ = list_commands(kip_file=kip_file)
+    return first

@@ -1,7 +1,7 @@
+import os
 import pathlib
 
-from kip.config.base import KIP_FILE
-import os
+KIP_FILE = '.kip'
 
 
 def get_kip_file():

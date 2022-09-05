@@ -1,61 +1,62 @@
-import fire
+import typer
 
-from kip.cli.user_input import user_input, get_choice, confirm
-from kip.command import Command
-from kip.config.read_config import get_kip_file
+from kip.models.command import Command
+from kip.services.list_commands import list_commands
 from kip.services.add_command import add_command
-from kip.services.command_file import load_from_command_file
+from kip.services.get_command import get_command_by_alias
 from kip.services.remove_command import remove_command
 from kip.services.run_command import run_command
 from kip.services.search_command import search_command
 
-UNSET = object()
+app = typer.Typer()
 
 
-class KipCli:
+# shell completion
+# ensure aliases are unique
 
-    def add(self, command: str = UNSET, description: str = UNSET, alias: str = UNSET):
-        if command is UNSET:
-            command = user_input("Enter a command to save: ")
-        if description is UNSET:
-            description = user_input("Enter a description for the provided command: ")
-        if alias is UNSET:
-            alias = user_input("Enter a alias for the command (optional): ")
-        command_to_add = Command(command, description, alias)
-        add_command(command_to_add, get_kip_file())
+def complete_alias(incomplete: str):
+    for command in list_commands():
+        if command.alias.startswith(incomplete):
+            yield command.alias, f"{command.description} || {command.command}"
 
-    def remove(self, search_str: str):
-        commands = search_command(search_str, get_kip_file())
-        if len(commands) == 0:
-            print("No matching command found")
-            print("Aborting...")
-        command_to_remove = get_choice(commands)
-        print(f"Remove {command_to_remove}")
-        if confirm():
-            remove_command(command_to_remove, get_kip_file())
 
-    def search(self, search_str: str):
-        commands = search_command(search_str, get_kip_file())
-        for command in commands:
-            print(command)
+@app.command()
+def add(command: str = typer.Option(..., prompt=True),
+        description: str = typer.Option(..., prompt=True),
+        alias: str = typer.Option(..., prompt=True)) -> None:
+    command = Command(command, description, alias)
+    add_command(command)
 
-    def list(self):
-        commands = load_from_command_file(get_kip_file())
-        for command in commands:
-            print(command)
 
-    def run(self, search_str):
-        commands = search_command(search_str, get_kip_file())
-        if len(commands) == 0:
-            print("No matching command found")
-            print("Aborting...")
-            return
-        command_to_execute = get_choice(commands)
+@app.command()
+def remove(alias: str = typer.Argument(..., autocompletion=complete_alias)) -> None:
+    command = get_command_by_alias(alias)
+    typer.confirm(f"Are you sure you want to delete the command:\n{command}\n", abort=True)
+    remove_command(command)
 
-        print(command_to_execute.command)
-        if confirm():
-            run_command(command_to_execute)
+
+@app.command()
+def search() -> None:
+    print(search_command())
+
+
+@app.command("list")
+def _list():
+    commands = list_commands()
+    for command in commands:
+        print(command)
+
+
+@app.command()
+def run(alias: str = typer.Argument(..., autocompletion=complete_alias)):
+    command = get_command_by_alias(alias)
+    typer.confirm(f"{command.command}\nRun?", abort=True)
+    run_command(command)
 
 
 def main():
-    fire.Fire(KipCli)
+    app()
+
+
+if __name__ == '__main__':
+    main()

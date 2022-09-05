@@ -1,7 +1,7 @@
 from hypothesis import given
 
 from kip.services.add_command import add_command
-from kip.services.command_file import load_from_command_file
+from kip.storage.command_file import load_from_command_file
 from tests.strategies import command, command_set
 
 

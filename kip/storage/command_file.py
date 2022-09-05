@@ -2,7 +2,7 @@ import contextlib
 
 import more_itertools
 
-from kip.command import Command, decode_commands_from_json, encode_commands_to_json
+from kip.models.command import Command, decode_commands_from_json, encode_commands_to_json
 from kip.util.types import file_name
 
 
