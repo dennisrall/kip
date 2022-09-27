@@ -4,8 +4,8 @@ import pathlib
 KIP_FILE = '.kip'
 
 
-def get_kip_file():
+def get_kip_file() -> pathlib.Path:
     file = pathlib.Path(os.getenv("HOME")) / KIP_FILE
     if not file.exists():
         file.touch()
-    return str(file)
+    return file

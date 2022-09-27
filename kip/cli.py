@@ -1,18 +1,10 @@
 import typer
 
-from kip.models.command import Command
-from kip.services.list_commands import list_commands
-from kip.services.add_command import add_command
-from kip.services.get_command import get_command_by_alias
-from kip.services.remove_command import remove_command
-from kip.services.run_command import run_command
-from kip.services.search_command import search_command
+from kip.models import Command
+from kip.services import list_commands, add_command, get_command_by_alias, remove_command, search_command, run_command
 
 app = typer.Typer()
 
-
-# shell completion
-# ensure aliases are unique
 
 def complete_alias(incomplete: str):
     for command in list_commands():
