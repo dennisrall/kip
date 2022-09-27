@@ -1,7 +1,7 @@
 import pytest
 
-from src.command import Command
-from src.services.command_file import save_to_command_file
+from kip.models.command import Command
+from kip.storage.command_file import save_to_command_file
 
 
 @pytest.fixture(scope="session")
@@ -15,4 +15,6 @@ def command_file_factory(tmp_path_factory):
     return create_command_file
 
 
-
+@pytest.fixture(scope="session")
+def ls_command():
+    return Command("ls -l", "list files in current director", "ls-l")
