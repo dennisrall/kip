@@ -10,8 +10,8 @@ def add_command(command: Command, kip_file=get_kip_file()) -> None:
         commands.add(command)
 
 
-def get_command_by_alias(alias: str) -> Command:
-    commands = list_commands()
+def get_command_by_alias(alias: str, kip_file=get_kip_file()) -> Command:
+    commands = list_commands(kip_file=kip_file)
     for command in commands:
         if command.alias == alias:
             return command

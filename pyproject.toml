@@ -6,10 +6,9 @@ authors = ["Dennis Rall <dennis.rall@web.de>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-dataclasses-json = "^0.5.7"
 more-itertools = "^8.13.0"
-thefuzz = "^0.19.0"
 typer = {extras = ["all"], version = "^0.6.1"}
+PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
@@ -21,4 +20,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-kip = "kip.cli.base_cli:main"
+kip = "kip.cli:main"

@@ -1,20 +1,21 @@
 from dataclasses import dataclass
 
-from dataclasses_json import dataclass_json
 
-
-@dataclass_json
-@dataclass(unsafe_hash=True)
+@dataclass(frozen=True)
 class Command:
     command: str
     description: str
     alias: str
 
+    def __eq__(self, other):
+        return self.alias == other.alias
 
-def decode_commands_from_json(json_str: str) -> set[Command]:
-    commands = Command.schema().loads(json_str, many=True)
-    return set(commands)
+    def __hash__(self):
+        return hash(self.alias)
 
+    def to_dict(self):
+        return self.__dict__
 
-def encode_commands_to_json(commands: set[Command]) -> str:
-    return Command.schema().dumps(list(commands), many=True)
+    @classmethod
+    def from_dict(cls, d: dict):
+        return cls(**d)
