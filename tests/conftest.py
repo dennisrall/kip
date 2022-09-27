@@ -19,4 +19,13 @@ def command_file_factory(tmp_path_factory):
 
 @pytest.fixture(scope="session")
 def ls_command() -> Command:
-    return Command("ls -l", "list files in current director", "ls-l")
+    return Command("ls -l", "list files in the current directory", "ls-test")
+
+
+@pytest.fixture(scope='session')
+def ls_command_dict() -> dict:
+    return {
+        'command': 'ls -l',
+        'description': 'list files in the current directory',
+        'alias': 'ls-test',
+    }
