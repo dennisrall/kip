@@ -9,9 +9,8 @@ class Command:
     alias: str
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Command):
-            return False
-        return self.alias == other.alias
+        # isinstance(other, Command) check is not working here
+        return self.alias == other.alias  # type: ignore
 
     def __hash__(self) -> int:
         return hash(self.alias)
