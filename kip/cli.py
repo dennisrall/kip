@@ -1,3 +1,5 @@
+from collections.abc import Iterator
+
 import typer
 
 from kip.models import Command
@@ -6,7 +8,7 @@ from kip.services import list_commands, add_command, get_command_by_alias, remov
 app = typer.Typer()
 
 
-def complete_alias(incomplete: str):
+def complete_alias(incomplete: str) -> Iterator[tuple[str, str]]:
     for command in list_commands():
         if command.alias.startswith(incomplete):
             yield command.alias, f"{command.description} || {command.command}"
@@ -16,8 +18,8 @@ def complete_alias(incomplete: str):
 def add(command: str = typer.Option(..., prompt=True),
         description: str = typer.Option(..., prompt=True),
         alias: str = typer.Option(..., prompt=True)) -> None:
-    command = Command(command, description, alias)
-    add_command(command)
+    new_command = Command(command, description, alias)
+    add_command(new_command)
 
 
 @app.command()
@@ -33,20 +35,20 @@ def search() -> None:
 
 
 @app.command("list")
-def _list():
+def _list() -> None:
     commands = list_commands()
     for command in commands:
         print(command)
 
 
 @app.command()
-def run(alias: str = typer.Argument(..., autocompletion=complete_alias)):
+def run(alias: str = typer.Argument(..., autocompletion=complete_alias)) -> None:
     command = get_command_by_alias(alias)
     typer.confirm(f"{command.command}\nRun?", abort=True)
     run_command(command)
 
 
-def main():
+def main() -> None:
     app()
 
 

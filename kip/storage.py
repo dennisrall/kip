@@ -1,4 +1,5 @@
 import contextlib
+from collections.abc import Iterator
 
 import yaml
 
@@ -19,7 +20,7 @@ def save_to_command_file(commands: set[Command], command_file_name: file_name) -
 
 
 @contextlib.contextmanager
-def persistent_command_set(command_file_name: file_name) -> contextlib.AbstractContextManager[set[Command]]:
+def persistent_command_set(command_file_name: file_name) -> Iterator[set[Command]]:
     commands = load_from_command_file(command_file_name)
     try:
         yield commands
