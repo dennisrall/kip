@@ -3,8 +3,8 @@ import pathlib
 from hypothesis import given
 
 from conftest import command_file_factory_type
-from models import Command
-from storage import load_from_command_file, save_to_command_file, persistent_command_set
+from kip.models import Command
+from kip.storage import load_from_command_file, save_to_command_file, persistent_command_set
 from strategies import command_set, command, non_empty_command_set
 
 

@@ -1,4 +1,3 @@
-import pathlib
 import subprocess
 
 import pytest
@@ -8,7 +7,7 @@ from pytest_mock import MockerFixture
 from conftest import command_file_factory_type
 from kip.services import add_command, run_command, remove_command, get_command_by_alias, list_commands
 from kip.storage import load_from_command_file
-from models import Command
+from kip.models import Command
 from tests.strategies import command, command_set
 from tests.strategies import non_empty_command_set
 

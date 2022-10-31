@@ -1,6 +1,6 @@
 from hypothesis import given
 
-from models import Command
+from kip.models import Command
 from strategies import command
 
 
