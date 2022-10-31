@@ -2,6 +2,7 @@ from collections.abc import Iterator
 
 import typer
 
+from kip.config import app as config_app
 from kip.models import Command
 from kip.services import (
     add_command,
@@ -13,6 +14,7 @@ from kip.services import (
 )
 
 app = typer.Typer()
+app.add_typer(config_app, name="config")
 
 
 def complete_alias(incomplete: str) -> Iterator[tuple[str, str]]:

@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 
-from kip.config import get_kip_file
+from kip.config_old import get_kip_file
 from kip.models import Command
 from kip.storage import load_from_command_file, persistent_command_set
 
