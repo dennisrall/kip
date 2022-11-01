@@ -1,7 +1,7 @@
 import os
 import pathlib
 
-KIP_FILE = '.kip'
+KIP_FILE = ".kip"
 
 
 def get_kip_file() -> pathlib.Path:

@@ -3,8 +3,8 @@ from collections.abc import Iterator
 
 import yaml
 
-from kip.models import Command
 from kip.lib import file_name
+from kip.models import Command
 
 
 def load_from_command_file(command_file_name: file_name) -> set[Command]:
@@ -15,7 +15,7 @@ def load_from_command_file(command_file_name: file_name) -> set[Command]:
 
 def save_to_command_file(commands: set[Command], command_file_name: file_name) -> None:
     dicts = [command.to_dict() for command in commands]
-    with open(command_file_name, 'w') as command_file:
+    with open(command_file_name, "w") as command_file:
         yaml.safe_dump(dicts, command_file)
 
 

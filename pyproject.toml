@@ -34,3 +34,6 @@ kip = "kip.cli:main"
 
 [tool.mypy]
 strict = true
+
+[tool.isort]
+profile = "black"

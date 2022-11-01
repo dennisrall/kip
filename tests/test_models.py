@@ -1,14 +1,16 @@
 from hypothesis import given
+from strategies import command
 
 from kip.models import Command
-from strategies import command
 
 
 def test_command_to_dict(ls_command: Command, ls_command_dict: dict[str, str]) -> None:
     assert ls_command.to_dict() == ls_command_dict
 
 
-def test_command_from_dict(ls_command_dict: dict[str, str], ls_command: Command) -> None:
+def test_command_from_dict(
+    ls_command_dict: dict[str, str], ls_command: Command
+) -> None:
     assert Command.from_dict(ls_command_dict) == ls_command
 
 
