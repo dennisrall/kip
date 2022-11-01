@@ -11,13 +11,19 @@ typer = {extras = ["all"], version = "^0.6.1"}
 PyYAML = "^6.0"
 types-PyYAML = "^6.0.12"
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.1.2"
-hypothesis = "^6.47.5"
-pytest-mock = "^3.8.1"
+[tool.poetry.group.lint.dependencies]
+black = "^22.10.0"
+isort = "^5.10.1"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.mypy.dependencies]
 mypy = "^0.982"
+black = "^22.10.0"
+isort = "^5.10.1"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.0"
+pytest-mock = "^3.10.0"
+hypothesis = "^6.56.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -28,3 +34,6 @@ kip = "kip.cli:main"
 
 [tool.mypy]
 strict = true
+
+[tool.isort]
+profile = "black"

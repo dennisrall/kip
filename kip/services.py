@@ -3,7 +3,7 @@ from pathlib import Path
 
 from kip.config import get_kip_file
 from kip.models import Command
-from kip.storage import persistent_command_set, load_from_command_file
+from kip.storage import load_from_command_file, persistent_command_set
 
 
 def add_command(command: Command, kip_file: Path = get_kip_file()) -> None:
@@ -17,7 +17,8 @@ def get_command_by_alias(alias: str, kip_file: Path = get_kip_file()) -> Command
         if command.alias == alias:
             return command
     raise ValueError(
-        f"No command with alias {alias} found. Run kip list to see all commands or kip search to find a specific one.")
+        f"No command with alias {alias} found. Run kip list to see all commands or kip search to find a specific one."
+    )
 
 
 def list_commands(kip_file: Path = get_kip_file()) -> set[Command]:

@@ -1,0 +1,30 @@
+name: Test
+on: push
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: install poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: '1.2.1'
+      - name: install lint dependencies
+        run: poetry install --only lint
+      - name: black
+        run: poetry run black --check kip tests
+      - name: isort
+        run: poetry run isort --check kip tests
+      - name: install test dependencies
+        run: poetry install --only main,test
+      - name: test
+        run: poetry run pytest
+      - name: install mypy dependencies
+        run: poetry install --only mypy
+      - name: mypy
+        run: poetry run mypy --ignore-missing-imports tests
