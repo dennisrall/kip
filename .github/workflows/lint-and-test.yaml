@@ -14,11 +14,17 @@ jobs:
         uses: abatilo/actions-poetry@v2
         with:
           poetry-version: '1.2.1'
+      - name: install lint dependencies
+        run: poetry install --only lint
+      - name: black
+        run: poetry run black --check kip tests
+      - name: isort
+        run: poetry run isort --check kip tests
       - name: install test dependencies
         run: poetry install --only main,test
       - name: test
         run: poetry run pytest
-      - name: install lint dependencies
-        run: poetry install --only lint
-      - name: lint
+      - name: install mypy dependencies
+        run: poetry install --only mypy
+      - name: mypy
         run: poetry run mypy --ignore-missing-imports tests
