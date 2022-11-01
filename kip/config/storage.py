@@ -24,7 +24,7 @@ def get_config_file() -> pathlib.Path:
 def load_config_file() -> Config:
     with open(get_config_file()) as config_file:
         config_dict = yaml.safe_load(config_file)
-    return Config(**config_dict)
+    return Config(**config_dict) if config_dict else Config([])
 
 
 def save_config_file(config: Config) -> None:

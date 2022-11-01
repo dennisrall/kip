@@ -3,14 +3,14 @@ import pathlib
 from kip.config.storage import persistent_config
 
 
-def add_config_file(kip_file: pathlib.Path) -> None:
+def add_kip_file(kip_file: pathlib.Path) -> None:
     with persistent_config() as config:
         kip_file_str = str(kip_file)
         if kip_file_str not in config.kip_files:
             config.kip_files.append(kip_file_str)
 
 
-def remove_config_file(kip_file: pathlib.Path) -> None:
+def remove_kip_file(kip_file: pathlib.Path) -> None:
     with persistent_config() as config:
         try:
             config.kip_files.remove(str(kip_file))
