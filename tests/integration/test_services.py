@@ -4,6 +4,7 @@ import subprocess
 import pytest
 from conftest import initialize_kip_files_type, mock_cwd_type
 from hypothesis import given
+from integration.strategies import command, command_set, non_empty_command_set
 from pytest_mock import MockerFixture
 
 from kip.base.models import Command, Commands
@@ -15,7 +16,6 @@ from kip.base.services import (
     run_command,
 )
 from kip.base.storage import load_from_command_file
-from tests.strategies import command, command_set, non_empty_command_set
 
 
 @given(command_to_add=command, commands=command_set)

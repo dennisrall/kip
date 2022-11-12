@@ -1,5 +1,5 @@
 from hypothesis import given
-from strategies import command
+from integration.strategies import command
 
 from kip.base.models import Command
 

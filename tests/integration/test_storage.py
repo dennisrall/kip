@@ -2,7 +2,7 @@ import pathlib
 
 from conftest import initialize_kip_files_type
 from hypothesis import given
-from strategies import command, command_set, non_empty_command_set
+from integration.strategies import command, command_set, non_empty_command_set
 
 from kip.base.models import Command
 from kip.base.storage import (
