@@ -3,8 +3,8 @@ from collections.abc import Iterator
 
 import yaml
 
-from kip.lib import file_name
-from kip.models import Command, Commands
+from kip.base.lib import file_name
+from kip.base.models import Command, Commands
 
 
 def load_from_command_file(command_file_name: file_name) -> Commands:

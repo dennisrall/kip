@@ -4,8 +4,8 @@ from collections.abc import Callable
 import pytest
 from pytest import TempPathFactory
 
-from kip.models import Command
-from kip.storage import save_to_command_file
+from kip.base.models import Command
+from kip.base.storage import save_to_command_file
 
 command_file_factory_type = Callable[[set[Command]], pathlib.Path]
 

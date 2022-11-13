@@ -4,8 +4,8 @@ from conftest import command_file_factory_type
 from hypothesis import given
 from strategies import command, command_set, non_empty_command_set
 
-from kip.models import Command
-from kip.storage import (
+from kip.base.models import Command
+from kip.base.storage import (
     load_from_command_file,
     persistent_command_set,
     save_to_command_file,

@@ -1,7 +1,7 @@
 from hypothesis import given
 from strategies import command
 
-from kip.models import Command
+from kip.base.models import Command
 
 
 def test_command_to_dict(ls_command: Command, ls_command_dict: dict[str, str]) -> None:

@@ -1,9 +1,9 @@
 import subprocess
 from pathlib import Path
 
-from kip.config_old import get_kip_file
-from kip.models import Command, Commands
-from kip.storage import load_from_command_file, persistent_command_set
+from kip.base.config_old import get_kip_file
+from kip.base.models import Command, Commands
+from kip.base.storage import load_from_command_file, persistent_command_set
 
 
 def add_command(command: Command, kip_file: Path = get_kip_file()) -> None:

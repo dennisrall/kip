@@ -5,15 +5,15 @@ from conftest import command_file_factory_type
 from hypothesis import given
 from pytest_mock import MockerFixture
 
-from kip.models import Command
-from kip.services import (
+from kip.base.models import Command
+from kip.base.services import (
     add_command,
     get_command_by_alias,
     list_commands,
     remove_command,
     run_command,
 )
-from kip.storage import load_from_command_file
+from kip.base.storage import load_from_command_file
 from tests.strategies import command, command_set, non_empty_command_set
 
 
