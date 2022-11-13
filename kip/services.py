@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 from kip.config_old import get_kip_file
-from kip.models import Command
+from kip.models import Command, Commands
 from kip.storage import load_from_command_file, persistent_command_set
 
 
@@ -21,7 +21,7 @@ def get_command_by_alias(alias: str, kip_file: Path = get_kip_file()) -> Command
     )
 
 
-def list_commands(kip_file: Path = get_kip_file()) -> set[Command]:
+def list_commands(kip_file: Path = get_kip_file()) -> Commands:
     return load_from_command_file(kip_file)
 
 
