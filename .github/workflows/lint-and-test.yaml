@@ -27,4 +27,6 @@ jobs:
       - name: install mypy dependencies
         run: poetry install --only mypy
       - name: mypy
+        run: poetry run mypy kip
+      - name: mypy tests
         run: poetry run mypy --ignore-missing-imports tests

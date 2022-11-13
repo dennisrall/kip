@@ -22,3 +22,6 @@ class Command:
     @classmethod
     def from_dict(cls, d: dict[str, str]) -> Command:
         return cls(**d)
+
+
+Commands = set[Command]

@@ -2,8 +2,8 @@ from collections.abc import Iterator
 
 import typer
 
-from kip.models import Command
-from kip.services import (
+from kip.base.models import Command
+from kip.base.services import (
     add_command,
     get_command_by_alias,
     list_commands,
@@ -57,11 +57,3 @@ def run(alias: str = typer.Argument(..., autocompletion=complete_alias)) -> None
     command = get_command_by_alias(alias)
     typer.confirm(f"{command.command}\nRun?", abort=True)
     run_command(command)
-
-
-def main() -> None:
-    app()
-
-
-if __name__ == "__main__":
-    main()
